@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+	    <title>Sistem Informasi Perpustakaan</title>
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	    <nav th:replace="fragments/fragment :: navbar"></nav>
+	    <br>
+	    <h2 align="center">Daftar Pustakawan</h2>
+	    <div class="container">	        
+	        <div class="row">
+	            <div class="col-md-12"><br>
+	       			<a class="btn btn-primary" th:href="@{/pustakawan/tambah}">Tambah Pustakawan</a>
+	       			<br><br>
+	                <div class="table-responsive">	                  
+                       	<table class="table table-sm table-bordered">
+							<thead>
+								<tr>
+									<th style="text-align: center">No.</th>
+									<th style="text-align: center">Nama</th>
+									<th style="text-align: center">NIP</th>
+									<th style="text-align: center">Tempat Lahir</th>
+									<th style="text-align: center">Tanggal Lahir</th>
+									<th style="text-align: center">Jenis Kelamin</th>
+									<th style="text-align: center">Spesialisasi</th>
+									<th style="text-align: center">Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="pustakawan,iterationStatus : *{pustakawanList}">
+                                    <td th:text="${iterationStatus.count}"></td>
+									<td><a th:href="@{'/pustakawan?nip=' + ${pustakawan.nip}}" th:text="${pustakawan.nama}"></a></td>
+									<td th:text="${pustakawan.nip}"></td>
+									<td th:text="${pustakawan.tempat_lahir}"></td>
+									<td th:text="${pustakawan.tanggal_lahir}"></td>
+									<td th:text="${pustakawan.jenis_kelamin} == '1' ? 'Laki-laki' : 'Perempuan'"></td>
+									<td>
+										<span th:if="${pustakawan.setOfSpesialisasi.size() == 0}">-</span>
+										<span th:each="spesialisasi,iterationStatus : ${pustakawan.setOfSpesialisasi}">
+								        	<span th:text="${spesialisasi.nama}">
+								        		<th:block th:if="${!iterationStatus.last}">,</th:block>							     
+								        	</span>
+								        </span>
+									</td>
+									<td style="text-align: center">
+										<a type="button" class="btn btn-info" th:href="@{'/pustakawan/jadwal/tambah/' + ${pustakawan.nip}}">Jadwal</a>
+				 						&nbsp;
+										<a type="button" class="btn btn-primary" th:href="@{'/pustakawan/update/' + ${pustakawan.id}}">Ubah</a>
+										&nbsp;
+										<a type="button" class="btn btn-danger" th:href="@{'/pustakawan/delete/' + ${pustakawan.id}}">Hapus</a>
+				 					</td> 
+								</tr>
+							</tbody>
+						</table>
+		        	</div>
+	            </div>
+	        </div>        
+	    </div>
+	</body>
+</html>

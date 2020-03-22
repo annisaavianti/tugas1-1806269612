@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <title>Detail Pustakawan</title>
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	    <nav th:replace="fragments/fragment :: navbar"></nav>
+	    <br>
+	     <div class="container">	        
+	        <div class="row">
+	        	<div class="col-md-3"></div>
+	            <div class="col-md-6">
+	            	 <div class="card">
+	                    <div class="card-header">Detail Pustakawan</div>
+	                    <div class="card-body">  
+	                    	<h4 th:text="'Nama : ' + ${pustakawan.nama}"></h4>
+	                        <h4 th:text="'NIP : ' + ${pustakawan.nip}"></h4>
+							<h4 th:text="'Tempat/Tanggal Lahir : ' + ${pustakawan.tempat_lahir} + '/' + ${pustakawan.tanggal_lahir}"></h4>
+	                        <h4 th:text="${pustakawan.jenis_kelamin} == 1 ? 'Jenis Kelamin : Laki-laki' : 'Jenis Kelamin : Perempuan'"></h4>
+	                        <h4 th:text="${pustakawan.setOfSpesialisasi.size() == 0} ? 'Spesialisasi: Tidak ada' : 'Spesialisasi : '"></h4>
+								<span th:each="spesialisasi,iterationStatus : ${pustakawan.setOfSpesialisasi}">
+									<h4 th:text="${iterationStatus.index+1} + '. ' + ${spesialisasi.nama}"></h4>
+								</span>                  
+	                	 </div>
+                	</div>		        
+	            </div>
+	            <div class="col-md-3"></div>
+	        </div>        
+	    </div> 
+	</body>
+</html>
