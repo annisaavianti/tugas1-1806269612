@@ -109,7 +109,7 @@ public class PustakawanController {
 	}
 	
 	@RequestMapping(value = "/pustakawan/delete/{id}")
-	private String deleteFlight(@PathVariable(value = "id") int id, Model model) {
+	private String hapusPustakawan(@PathVariable(value = "id") int id, Model model) {
 		pustakawanService.deletePustakawan(id);
 		model.addAttribute("nav", "Hapus Pustakawan");
 		return "hapus";
