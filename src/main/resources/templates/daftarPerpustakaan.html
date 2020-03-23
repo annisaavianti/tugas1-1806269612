@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+	    <title>Daftar Perpustakaan</title>
+	    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+	    <nav th:replace="fragments/fragment :: navbar"></nav><br>
+	    <div class="container">
+		    <div class="table-wrapper">
+	            <div class="table-title">
+	                <div class="row">
+	                    <div class="col-sm-9"><h2><b>Daftar Perpustakaan</b></h2></div>
+	                    <div class="col-sm-3" align="right">
+	                    	<a class="btn btn-primary" th:href="@{/perpustakaan/tambah}">Tambah Perpustakaan</a>
+	                    </div>
+	                </div>
+	            </div><br>
+	            <table class="table table-bordered table-sm">
+	                <thead>
+	                    <tr>
+	                        <th style="text-align: center">No.</th>
+							<th style="text-align: center">Nama</th>
+							<th style="text-align: center">Lokasi</th>
+							<th style="text-align: center">Actions</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                	<tr th:each="perpustakaan,iterationStatus : *{perpustakaanList}">
+                            <td th:text="${iterationStatus.count}"></td>
+							<td th:text="${perpustakaan.nama}"></td>
+							<td th:text="${perpustakaan.lokasi}"></td>
+							<td style="text-align: center">
+								<a type="button" class="btn btn-danger" th:href="@{'/perpustakaan/delete/' + ${perpustakaan.id}}">Hapus</a>
+		 					</td> 
+						</tr>      
+	                </tbody>
+	            </table>
+	        </div>           
+	    </div>
+	</body>
+</html>
