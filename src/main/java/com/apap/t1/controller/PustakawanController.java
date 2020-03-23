@@ -73,14 +73,12 @@ public class PustakawanController {
     }*/
 	
 	@RequestMapping(value = "/pustakawan/tambah", method = RequestMethod.POST, params={"simpan"} )
-	private String tambahPustakawanSimpan(@RequestParam(value = "setOfSpesialisasi") int spesialisasi, @ModelAttribute PustakawanModel pustakawan, Model model) {
-		Optional<SpesialisasiModel> spesialisasiId = spesialisasiService.getSpesialisasiById(spesialisasi);
-		for (SpesialisasiModel s: pustakawan.getSetOfSpesialisasi()) {
-			if (s != null) {
-				pustakawan.getSetOfSpesialisasi().add(spesialisasiId.get());
-				pustakawanService.addPustakawan(pustakawan);
-			}
-		}	
+	private String tambahPustakawanSimpan(@RequestParam(value="spesialisasi", required = false) SpesialisasiModel spesialisasi, @ModelAttribute PustakawanModel pustakawan, Model model) {
+		pustakawanService.addPustakawan(pustakawan);
+		if (!(spesialisasi == null)) {
+			Optional<SpesialisasiModel> spesialisasiId = spesialisasiService.getSpesialisasiById(spesialisasi.getId());
+			pustakawan.getSetOfSpesialisasi().add(spesialisasiId.get());
+		}
 		model.addAttribute("nav", "Tambah Pustakawan");
 		return "tambah";		
 	}

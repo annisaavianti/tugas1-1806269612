@@ -13,45 +13,50 @@
 	        	<div class="col-md-3"></div>
 	            <div class="col-md-6">
 	            	 <div class="card">
-	                    <div class="card-header">Tambah Pustakawan</div>
+	                    <div class="card-header text-center"><b>Tambah Pustakawan</b></div>
 	                    <div class="card-body"> 
 	                        <form th:action="@{/pustakawan/tambah}" th:object="${pustakawanObj}" method="POST">
 	                        	<input type="hidden" name="id" th:field="*{id}"/>
-	                            Nama: <br>
-	                            <input type="text" name="nama" th:value="${nama}?${nama}" class="form-control"/>
-	                            <br>
-	                            Tempat Lahir: <br>
-	                            <input type="text" name="tempat_lahir" th:value="${tempat_lahir}?${tempat_lahir}" class="form-control"/>
-	                            <br>
-	                            Tanggal Lahir: <br>
-	                            <input type="text" name="tanggal_lahir" th:value="${tanggal_lahir}?${tanggal_lahir}"  class="form-control" placeholder="yyyy-mm-dd"/>
-	                            <br>
-	                            Jenis Kelamin: <br>
-	                            <div class="form-check form-check-inline">
-	                            	<input class="form-check-input" type="radio" name="jenis_kelamin" id="jk_lk" value="1" th:field="*{jenis_kelamin}" th:checked="${jenis_kelamin}==1?${jenis_kelamin}">
-  									<label class="form-check-label" for="jk_lk">Laki-laki</label>
-  								</div>
-  								<div class="form-check form-check-inline">
-	  								<input class="form-check-input" type="radio" name="jenis_kelamin" id="jk_pr" value="2" th:field="*{jenis_kelamin}" th:checked="${jenis_kelamin}==2?${jenis_kelamin}">
-	  								<label class="form-check-label" for="jk_pr">Perempuan</label>
-	  							</div>
-	                            <br><br>                          
-	                            Spesialisasi: <br>
-	                          	<div class="form-row">
-	                            	<div class="form-group col-md-10">
-			                            <select class="form-control" name="setOfSpesialisasi" th:field="*{setOfSpesialisasi}">
-			                            	<option value="0">-Pilih Spesialisasi-</option>
-											<option th:each="spesialisasi : ${spesialisasiList}"
-												th:value="${spesialisasi.id}" 
-												th:text="${spesialisasi.nama}">
-											</option>
-										</select>
-									</div>
-									<div class="form-group col-md-2">
-										<button type="submit" class="btn btn-info" name="tambah">Tambah</button>	
-									</div>	
-  								</div>		
-	                            <br><br>
+	                        	<div class="form-group">
+							    	<label for="nama">Nama</label>
+							    	<input type="text" class="form-control" name="nama" id="nama" th:value="${nama}?${nama}">
+							  	</div>
+	                        	<div class="form-group">
+							    	<label for="tempat_lahir">Tempat Lahir</label>
+							    	<input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" th:value="${tempat_lahir}?${tempat_lahir}">
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="tanggal_lahir">Tanggal Lahir</label>
+							    	<input type="text" class="form-control"name="tanggal_lahir" id="tanggal_lahir" th:value="${tanggal_lahir}?${tanggal_lahir}" placeholder="yyyy-mm-dd">
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="jenis_kelamin">Jenis Kelamin</label>
+							    	<div class="form-check form-check-inline">
+		                            	<input class="form-check-input" type="radio" name="jenis_kelamin" id="jk_lk" value="1" th:field="*{jenis_kelamin}" th:checked="${jenis_kelamin}==1?${jenis_kelamin}">
+	  									<label class="form-check-label" for="jk_lk">Laki-laki</label>
+	  								</div>
+	  								<div class="form-check form-check-inline">
+		  								<input class="form-check-input" type="radio" name="jenis_kelamin" id="jk_pr" value="2" th:field="*{jenis_kelamin}" th:checked="${jenis_kelamin}==2?${jenis_kelamin}">
+		  								<label class="form-check-label" for="jk_pr">Perempuan</label>
+		  							</div>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="spesialisasi">Spesialisasi</label>
+								    <div class="form-row">
+		                            	<div class="form-group col-md-10">
+				                            <select class="form-control" id= "spesialisasi" name="spesialisasi" th:field="*{setOfSpesialisasi}">
+				                            	<option value="0">-Pilih Spesialisasi-</option>
+												<option th:each="spesialisasi : ${spesialisasiList}"
+													th:value="${spesialisasi.id}" 
+													th:text="${spesialisasi.nama}">
+												</option>
+											</select>
+										</div>
+										<div class="form-group col-md-2">
+											<button type="submit" class="btn btn-info" name="tambah">Tambah</button>	
+										</div>	
+	  								</div>
+							  	</div><br><br>
 	                            <button type="submit" class="btn btn-primary" name="simpan">Simpan</button>
 	                        </form>
 	                     </div>
