@@ -29,7 +29,7 @@ public class JadwalController {
 	private PerpustakaanService perpustakaanService;
 	
 	@RequestMapping(value = "/jadwal/tambah/{nip}", method = RequestMethod.GET)
-	private String tambahJadwal(@PathVariable(value = "nip") String nip, @ModelAttribute JadwalModel jadwal, Model model) {
+	private String tambahJadwal(@PathVariable(value = "nip") String nip, @ModelAttribute JadwalModel jadwal, @ModelAttribute PerpustakaanModel perpustakaan, Model model) {
 		JadwalModel newJadwal = new JadwalModel();
 		List <PerpustakaanModel> perpusList = perpustakaanService.getPerpustakaanList();
 		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
@@ -38,19 +38,17 @@ public class JadwalController {
 		model.addAttribute("perpusList", perpusList);
 		model.addAttribute("pustakawan", pustakawan);
 		model.addAttribute("pustakawan_id", pustakawan.getId());
-		model.addAttribute("perpusJadwal", jadwal.getPerpustakaan());
-		model.addAttribute("hari", jadwal.getHari());
 		model.addAttribute("nav", "Tambah Jadwal Pustakawan");
 		return "tambahJadwal";
 	}
 	
 	@RequestMapping(value = "/jadwal/tambah/{nip}", method = RequestMethod.POST)
-	private String tambahJadwalSubmit(@PathVariable(value = "nip") String nip, @ModelAttribute JadwalModel jadwal, @RequestParam(value = "perpustakaan", required = true) PerpustakaanModel perpustakaan, @RequestParam(value = "hari") String hari, @RequestParam(value = "pustakawan", required = true) PustakawanModel pustakawan, Model model) {
+	private String tambahJadwalSubmit(@ModelAttribute JadwalModel jadwal, @RequestParam(value = "perpustakaan", required = true) PerpustakaanModel perpustakaan, @RequestParam(value = "hari") String hari, @RequestParam(value = "pustakawan", required = true) PustakawanModel pustakawan, Model model) {
 		jadwal.setPustakawan(pustakawanService.getPustakawanById(pustakawan.getId()));
 		jadwal.setPerpustakaan(perpustakaanService.getPerpustakaanById(perpustakaan.getId()).get());
 		jadwal.setHari(hari);
 		pustakawan.getSetOfJadwal().add(jadwal);
-		model.addAttribute("pustakawan", pustakawan);
+		pustakawanService.addJadwal(pustakawan.getId(), pustakawan);
 		model.addAttribute("nav", "Tambah Jadwal Pustakawan");
 		return "tambah";
 	}

@@ -61,7 +61,7 @@ public class PustakawanModel implements Serializable {
 			inverseJoinColumns = { @JoinColumn(name = "spesialisasi_id") })
 	private Set<SpesialisasiModel> setOfSpesialisasi = new HashSet<>(); //dibuat Set agar tidak ada data duplikat
 	
-	@OneToMany(mappedBy ="pustakawan", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy ="pustakawan", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<JadwalModel> setOfJadwal; //dibuat Set agar tidak ada data duplikat
 
 	public int getId() {

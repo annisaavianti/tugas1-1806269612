@@ -39,7 +39,7 @@
 				                            <td th:text="${iterationStatus.count}"></td>
 											<td th:text="${perpustakaan.nama}"></td>
 											<td>
-												<span th:each="jadwal,iterationStatus : *{perpustakaan.setOfJadwal}">
+												<span th:each="jadwal : *{perpustakaan.setOfJadwal}">
 										        	<span th:text="${jadwal.hari}"></span>						     
 										        </span>
 											</td>

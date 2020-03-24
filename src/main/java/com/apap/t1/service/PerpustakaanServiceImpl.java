@@ -39,7 +39,4 @@ public class PerpustakaanServiceImpl implements PerpustakaanService{
 	public void deletePerpustakaan(int id) {
 		perpustakaanDb.delete(this.getPerpustakaanById(id).get());
 	}
-	
-	
-
 }

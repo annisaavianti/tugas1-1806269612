@@ -13,6 +13,7 @@ public interface PustakawanService {
 	PustakawanModel getPustakawanByNip(String nip);
 	void generateNip(PustakawanModel pustakawan);
 	void addPustakawan(PustakawanModel pustakawan);
+	void addJadwal(int id, PustakawanModel pustakawan);
 	void updatePustakawan(int id, PustakawanModel pustakawan);
 	void deletePustakawan(int id);
 }
