@@ -2,8 +2,12 @@
 <html xmlns:th="http://thymeleaf.org">
 	<head>
 		<title>404 Not Found</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 	</head>
 	<body>
-		<h2>Maaf, halaman tidak ditemukan.</h2>
+		<div class="alert alert-danger" role="alert">
+  			Maaf, halaman tidak ditemukan. Klik <a th:href="@{/}" class="alert-link">disini</a> untuk kembali ke halaman utama Sistem Informasi Pustakawan. 
+		</div>
 	</body>
 </html>

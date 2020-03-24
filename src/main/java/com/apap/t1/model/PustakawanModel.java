@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import org.apache.commons.text.RandomStringGenerator;
@@ -60,8 +61,8 @@ public class PustakawanModel implements Serializable {
 			inverseJoinColumns = { @JoinColumn(name = "spesialisasi_id") })
 	private Set<SpesialisasiModel> setOfSpesialisasi = new HashSet<>(); //dibuat Set agar tidak ada data duplikat
 	
-	@OneToMany(mappedBy ="pustakawan", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private Set<PustakawanPerpusModel> setOfPustakawanPerpus = new HashSet<>(); //dibuat Set agar tidak ada data duplikat
+	@OneToMany(mappedBy ="pustakawan", cascade = CascadeType.ALL)
+	private Set<JadwalModel> setOfJadwal; //dibuat Set agar tidak ada data duplikat
 
 	public int getId() {
 		return id;
@@ -119,16 +120,17 @@ public class PustakawanModel implements Serializable {
 		this.setOfSpesialisasi = setOfSpesialisasi;
 	}
 
-	public Set<PustakawanPerpusModel> getSetOfPustakawanPerpus() {
-		return setOfPustakawanPerpus;
+	public Set<JadwalModel> getSetOfJadwal() {
+		return setOfJadwal;
 	}
 
-	public void setSetOfPustakawanPerpus(Set<PustakawanPerpusModel> setOfPustakawanPerpus) {
-		this.setOfPustakawanPerpus = setOfPustakawanPerpus;
+	public void setSetOfJadwal(Set<JadwalModel> setOfJadwal) {
+		this.setOfJadwal = setOfJadwal;
 	}
 	
 	@Override
 	public int hashCode() {
+		Objects.hash(id);
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;

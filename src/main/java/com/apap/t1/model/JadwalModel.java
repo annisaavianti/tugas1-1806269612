@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "pustakawan_perpustakaan")
-public class PustakawanPerpusModel implements Serializable {
+public class JadwalModel implements Serializable {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "pustakawan_id")
@@ -70,7 +70,7 @@ public class PustakawanPerpusModel implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PustakawanPerpusModel other = (PustakawanPerpusModel) obj;
+		JadwalModel other = (JadwalModel) obj;
 		if (perpustakaan == null) {
 			if (other.perpustakaan != null)
 				return false;

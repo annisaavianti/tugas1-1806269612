@@ -1,6 +1,7 @@
 package com.apap.t1.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class PerpustakaanServiceImpl implements PerpustakaanService{
 	}
 
 	@Override
-	public PerpustakaanModel getPerpustakaanById(int id) {
+	public Optional<PerpustakaanModel> getPerpustakaanById(int id) {
 		return perpustakaanDb.findById(id);
 	}
 
@@ -36,7 +37,7 @@ public class PerpustakaanServiceImpl implements PerpustakaanService{
 
 	@Override
 	public void deletePerpustakaan(int id) {
-		perpustakaanDb.delete(this.getPerpustakaanById(id));
+		perpustakaanDb.delete(this.getPerpustakaanById(id).get());
 	}
 	
 	

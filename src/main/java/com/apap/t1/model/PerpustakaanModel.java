@@ -1,13 +1,10 @@
 package com.apap.t1.model;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,8 +30,8 @@ public class PerpustakaanModel implements Serializable {
 	@Column(name = "lokasi", nullable = true)
 	private String lokasi;
 	
-	@OneToMany(mappedBy = "perpustakaan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<PustakawanPerpusModel> setOfPustakawanPerpus = new HashSet<>();
+	@OneToMany(mappedBy = "perpustakaan")
+	private Set<JadwalModel> setOfJadwal;
 
 	public int getId() {
 		return id;
@@ -60,12 +57,12 @@ public class PerpustakaanModel implements Serializable {
 		this.lokasi = lokasi;
 	}
 
-	public Set<PustakawanPerpusModel> getSetOfPustakawanPerpus() {
-		return setOfPustakawanPerpus;
+	public Set<JadwalModel> getSetOfJadwal() {
+		return setOfJadwal;
 	}
 
-	public void setSetOfPustakawanPerpus(Set<PustakawanPerpusModel> setOfPustakawanPerpus) {
-		this.setOfPustakawanPerpus = setOfPustakawanPerpus;
+	public void setSetOfJadwal(Set<JadwalModel> setOfJadwal) {
+		this.setOfJadwal = setOfJadwal;
 	}
 
 	@Override

@@ -62,6 +62,5 @@ public class PustakawanServiceImpl implements PustakawanService{
 	public void deletePustakawan(int id) {
 		pustakawanDb.delete(this.getPustakawanById(id));
 	}
-
 	
 }
