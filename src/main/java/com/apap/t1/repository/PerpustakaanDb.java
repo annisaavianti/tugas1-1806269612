@@ -14,5 +14,4 @@ import com.apap.t1.model.PerpustakaanModel;
 @Repository
 public interface PerpustakaanDb extends JpaRepository<PerpustakaanModel, Integer>{
 	Optional<PerpustakaanModel> findById(int id);
-	Optional<PerpustakaanModel> findByNama(String nama);
 }
