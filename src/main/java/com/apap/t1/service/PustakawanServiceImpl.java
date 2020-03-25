@@ -58,7 +58,8 @@ public class PustakawanServiceImpl implements PustakawanService{
 		pustakawan.setJenis_kelamin(updatePustakawan.getJenis_kelamin());
 		pustakawan.setSetOfSpesialisasi(updatePustakawan.getSetOfSpesialisasi());
 	}
-
+	
+	@Override
 	public void deletePustakawan(int id) {
 		pustakawanDb.delete(this.getPustakawanById(id));
 	}
@@ -68,5 +69,11 @@ public class PustakawanServiceImpl implements PustakawanService{
 		PustakawanModel pustakawan = this.getPustakawanById(id);
 		pustakawan.setSetOfJadwal(updatePustakawan.getSetOfJadwal());
 	}
-	
+
+	@Override
+	public void deleteJadwal(int id) {
+		PustakawanModel pustakawan = this.getPustakawanById(id);
+		pustakawan.getSetOfJadwal().removeAll(pustakawan.getSetOfJadwal());
+	}
+
 }

@@ -11,6 +11,7 @@ import com.apap.t1.model.PerpustakaanModel;
 public interface PerpustakaanService {
 	List<PerpustakaanModel> getPerpustakaanList();
 	Optional<PerpustakaanModel> getPerpustakaanById(int id);
+	Optional<PerpustakaanModel> getPerpustakaanByNama(String nama);
 	void addPerpustakaan(PerpustakaanModel perpustakaan);
 	void deletePerpustakaan(int id);
 }

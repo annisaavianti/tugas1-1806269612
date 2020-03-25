@@ -36,11 +36,10 @@
 					                </thead>
 					                <tbody>
 					                	<tr th:each="perpustakaan,iterationStatus : *{filteredPerpus}">
-					                		
 				                            <td th:text="${iterationStatus.count}"></td>
 											<td>
 											 	<span th:each="jadwal: *{perpustakaan}">
-										        	<span th:text="${jadwal.perpustakaan.nama}"></span>						     
+										        	<span th:text="${jadwal.perpustakaan.nama}"></span>
 										        </span>
 											</td>
 											<td>

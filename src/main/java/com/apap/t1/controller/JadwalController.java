@@ -1,6 +1,5 @@
 package com.apap.t1.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class JadwalController {
 	private PerpustakaanService perpustakaanService;
 	
 	@RequestMapping(value = "/jadwal/tambah/{nip}", method = RequestMethod.GET)
-	private String tambahJadwal(@PathVariable(value = "nip") String nip, @ModelAttribute JadwalModel jadwal, Model model) {
+	private String tambahJadwal(@PathVariable(value = "nip") String nip, Model model) {
 		JadwalModel newJadwal = new JadwalModel();
 		List <PerpustakaanModel> perpusList = perpustakaanService.getPerpustakaanList();
 		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
@@ -45,7 +44,7 @@ public class JadwalController {
 	}
 	
 	@RequestMapping(value = "/jadwal/tambah/{nip}", method = RequestMethod.POST)
-	private String tambahJadwalSubmit(@ModelAttribute JadwalModel jadwal, @RequestParam(value = "perpustakaan", required = true) PerpustakaanModel perpustakaan, @RequestParam(value = "hari") String hari, @RequestParam(value = "pustakawan", required = true) PustakawanModel pustakawan, Model model) {
+	private String tambahJadwalSubmit(@ModelAttribute JadwalModel jadwal, @RequestParam(value = "perpustakaan", required = true) PerpustakaanModel perpustakaan, @RequestParam(value = "hari") String hari, @RequestParam(value = "pustakawan", required = true) PustakawanModel pustakawan, Model model) 	{
 		jadwal.setPustakawan(pustakawanService.getPustakawanById(pustakawan.getId()));
 		jadwal.setPerpustakaan(perpustakaanService.getPerpustakaanById(perpustakaan.getId()).get());
 		jadwal.setHari(hari);
@@ -53,5 +52,12 @@ public class JadwalController {
 		pustakawanService.addJadwal(pustakawan.getId(), pustakawan);
 		model.addAttribute("nav", "Tambah Jadwal Pustakawan");
 		return "tambah";
+	}
+	
+	@RequestMapping(value = "/jadwal/delete/{pustakawan_id}")
+	private String hapusJadwal(@PathVariable(value = "pustakawan_id") int pustakawan_id, Model model) {
+		pustakawanService.deleteJadwal(pustakawan_id);
+		model.addAttribute("nav", "Hapus Pustakawan");
+		return "hapus";
 	}
 }
