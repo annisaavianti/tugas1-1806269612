@@ -1,5 +1,6 @@
 package com.apap.t1.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class JadwalController {
 	private PerpustakaanService perpustakaanService;
 	
 	@RequestMapping(value = "/jadwal/tambah/{nip}", method = RequestMethod.GET)
-	private String tambahJadwal(@PathVariable(value = "nip") String nip, @ModelAttribute JadwalModel jadwal, @ModelAttribute PerpustakaanModel perpustakaan, Model model) {
+	private String tambahJadwal(@PathVariable(value = "nip") String nip, @ModelAttribute JadwalModel jadwal, Model model) {
 		JadwalModel newJadwal = new JadwalModel();
 		List <PerpustakaanModel> perpusList = perpustakaanService.getPerpustakaanList();
 		PustakawanModel pustakawan = pustakawanService.getPustakawanByNip(nip);
@@ -38,6 +39,7 @@ public class JadwalController {
 		model.addAttribute("perpusList", perpusList);
 		model.addAttribute("pustakawan", pustakawan);
 		model.addAttribute("pustakawan_id", pustakawan.getId());
+		model.addAttribute("filteredPerpus", pustakawan.getSetOfJadwal());
 		model.addAttribute("nav", "Tambah Jadwal Pustakawan");
 		return "tambahJadwal";
 	}
@@ -52,5 +54,4 @@ public class JadwalController {
 		model.addAttribute("nav", "Tambah Jadwal Pustakawan");
 		return "tambah";
 	}
-
 }

@@ -35,14 +35,19 @@
 					                    </tr>
 					                </thead>
 					                <tbody>
-					                	<tr th:each="perpustakaan,iterationStatus : *{perpusList}">
+					                	<tr th:each="perpustakaan,iterationStatus : *{filteredPerpus}">
+					                		
 				                            <td th:text="${iterationStatus.count}"></td>
-											<td th:text="${perpustakaan.nama}"></td>
 											<td>
-												<span th:each="jadwal : *{perpustakaan.setOfJadwal}">
-										        	<span th:text="${jadwal.hari}"></span>						     
+											 	<span th:each="jadwal: *{perpustakaan}">
+										        	<span th:text="${jadwal.perpustakaan.nama}"></span>						     
 										        </span>
 											</td>
+											<td>
+												<span th:each="jadwal: *{perpustakaan}">
+										        	<span th:text="${jadwal.hari}"></span>						     
+										        </span>
+										    </td>
 											<td style="text-align: center">
 												<a type="button" class="btn btn-danger" th:href="@{'/jadwal/delete/' + ${pustakawan_id}}">Hapus</a>
 						 					</td> 
